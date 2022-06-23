@@ -49,6 +49,7 @@ func getPokemonByID(url string) (*formData, error) {
 	return formData, err
 }
 
+// GetPokemonByID This function is in charge of querying the api of https://pokeapi.co/api/v2/pokemon-form with the ID to obtain the name of the Pokemon.
 func GetPokemonByID(id int) string {
 	fullURL := fmt.Sprintf("%s/%d", API_POKEMON, id)
 

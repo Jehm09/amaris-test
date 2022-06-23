@@ -11,26 +11,37 @@ func TestSplitNames(t *testing.T) {
 		t.Fatal("Error with size")
 	}
 
-	names = "joe, carlos, seabastian"
-	namesArray, size = SplitNames(names)
-	if pokemon != "voltorb" {
-		t.Fatal(pokemon)
+	names = ""
+	_, size = SplitNames(names)
+	if size != 0 {
+		t.Fatal("Size will be 0")
 	}
 
-	pokemon = GetPokemonByID(20)
-	if pokemon != "raticate" {
-		t.Fatal(pokemon)
-	}
-
-	pokemon = GetPokemonByID(200)
-	if pokemon != "misdreavus" {
-		t.Fatal(pokemon)
+	names = "joe"
+	_, size = SplitNames(names)
+	if size != 1 {
+		t.Fatal("Size will be 1")
 	}
 }
 
-func TestInvalidURL(t *testing.T) {
-	_, err := getPokemonByID("invalid url")
-	if err == nil {
-		t.Fatal("Expected error")
+func TestFriendlyStrings(t *testing.T) {
+
+	X := "tokyo"
+	friendlyStrings := []string{"otoky", "yotok", "okyot", "kyoto"}
+	for _, Y := range friendlyStrings {
+		isFriendlyStrings := FriendsStrigns(X, Y)
+		if !isFriendlyStrings {
+			t.Fatal("Must be strings friends")
+		}
+	}
+
+	isFriendlyStrings := FriendsStrigns(X, "toyoka")
+	if isFriendlyStrings {
+		t.Fatal("Different lengths")
+	}
+
+	isFriendlyStrings = FriendsStrigns(X, "toyok")
+	if isFriendlyStrings {
+		t.Fatal("Must be not strings friends")
 	}
 }

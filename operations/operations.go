@@ -5,7 +5,12 @@ import (
 	"strings"
 )
 
+// SplitNames This function creates an array of alphabetically ordered names obtained from a string separated by commas.
 func SplitNames(str string) ([]string, int) {
+	if strings.Trim(str, " ") == "" {
+		return []string{}, 0
+	}
+
 	names := strings.Split(str, ",")
 
 	sort.SliceStable(names, func(i, j int) bool {
@@ -15,6 +20,7 @@ func SplitNames(str string) ([]string, int) {
 	return names, len(names)
 }
 
+// FriendsStrigns This function checks if two strings are friend strings, only if X=uv and Y=vu.
 func FriendsStrigns(X, Y string) bool {
 	if len(X) != len(Y) {
 		return false
